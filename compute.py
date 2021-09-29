@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
 import sys
-import re
 
 #given n inputs
 #print n+1
 def main():
-    threshold=float(input("threshold:"))
-    limit=float(input("limit:"))
+    threshold=float(sys.argv[len(sys.argv)-2])
+    limit=float(sys.argv[len(sys.argv)-1])
     nums=[]
     total=0
-    for line in sys.stdin:
-        if 'q'==line.rstrip():
-            break
-            #print(f'Input : {line}')
-        value=compareThreshold(float(line), threshold)
-        print(value)
-        nums.append(value)
+    INPUT_FILE = sys.argv[1]
+    with open(INPUT_FILE, "r") as f:
+        for line in f:
+            value=compareThreshold(float(line), threshold)
+            nums.append(value)
     for i in range(0, len(nums)):
         previous = total
         total = total + nums[i]
